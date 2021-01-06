@@ -1,5 +1,6 @@
 use proconio::input;
 
+#[allow(dead_code)]
 pub fn main() {
     input! {
         a: i32,

@@ -1,5 +1,5 @@
 [package]
-name = "DailyCodingProblem"
+name = "daily_coding_problem"
 version = "0.1.0"
 authors = ["tanakakz <tanakakz.feb.23@gmail.com>"]
 edition = "2018"
