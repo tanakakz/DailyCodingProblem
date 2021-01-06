@@ -25,7 +25,7 @@ pub fn main() {
     println!("{}", f(n, g, k)); // ex. true
 }
 
-fn f(n: usize, mut g: Vec<i32>, k: i32) -> bool {
+fn f(mut n: usize, mut g: Vec<i32>, k: i32) -> bool {
     // 要件：g[i]+g[j]=k, i<jとなる2要素がgivenに含まれるかどうか
 
     // givenの要素数nが最小必要要素数2に満たない場合、要件を満たせないと判断する
@@ -37,8 +37,16 @@ fn f(n: usize, mut g: Vec<i32>, k: i32) -> bool {
     // 2要素合計の最小値がkより大きい場合、要件を満たせないと判断する
     if k < g[0]+g[1] { return false; }
 
-    // 2要素合計がkと等しくなるものが見つからないと判断したした場合中断する
-    if false { return false; }
+    for i in 0..n {
+        if k <= g[i] { return false; }
+        for j in i+1..n {
+            // 2つ目の要素g[j]のみで評価値k以上となってしまった＝要件を満たせない
+            if k <= g[j] { n = j-1; continue; }
+            // 要件を満たす組み合わせが見つかった
+            if k == g[i]+g[j] { return true; }
+        }
+    }
 
-    return true;
+    // 2要素合計がkと等しくなるものが最後まで見つからなかった
+    return false;
 }
