@@ -22,56 +22,56 @@
 #[allow(dead_code)]
 pub fn main() {
     println!("at 2021/01/08\n");
-    let tree = node! {
-        val: "root",
-        left: node! {
-            val: "left",
-            left: node! {
-                val: "left.left"
-            }
-        },
-        right: node! {
-            val: "right"
-        },
-    };
-    let tree_left_left_val = Node::deserialize(tree.serialize()).left.unwrap().left.unwrap().val;
-    assert_eq!(tree_left_left_val.to_string(), "left.left");
+    // let tree = node! {
+    //     val: "root",
+    //     left: node! {
+    //         val: "left",
+    //         left: node! {
+    //             val: "left.left"
+    //         }
+    //     },
+    //     right: node! {
+    //         val: "right"
+    //     },
+    // };
+    // let tree_left_left_val = Node::deserialize(tree.serialize()).left.unwrap().left.unwrap().val;
+    // assert_eq!(tree_left_left_val.to_string(), "left.left");
 }
 
-struct Node {
-    val: Box<str>,
-    left: Box<Option<Node>>,
-    right: Box<Option<Node>>,
-}
-
-impl Node {
-    fn new(val: &str, left: Node, right: Node) -> Node {
-        Node {
-            val: val.into(),
-            left: Box::new(Some(left)),
-            right: Box::new(Some(right)),
-        }
-    }
-    fn serialize(self) -> &'static str {
-        return "dummy";
-    }
-    fn deserialize(tree: &str) -> Node {
-        return Node::new( tree, Nil, nil );
-    }
-}
-
-#[macro_export]
-macro_rules! node {
-    ( val: $val:expr, left: $left:expr, right: $right:expr $(,)? ) => {
-        Node::new($val, $left, $right)
-    };
-    ( val: $val:expr, left: $left:expr $(,)? ) => {
-        node! { val: $val, left: $left, right: node!() }
-    };
-    ( val: $val:expr, right: $right:expr $(,)? ) => {
-        node! { val: $val, left: node!(), right: $right }
-    };
-    () => {
-        None
-    };
-}
+// struct Node {
+//     val: Box<str>,
+//     left: Box<Option<Node>>,
+//     right: Box<Option<Node>>,
+// }
+//
+// impl Node {
+//     fn new(val: &str, left: Node, right: Node) -> Node {
+//         Node {
+//             val: val.into(),
+//             left: Box::new(Some(left)),
+//             right: Box::new(Some(right)),
+//         }
+//     }
+//     fn serialize(self) -> &'static str {
+//         return "dummy";
+//     }
+//     fn deserialize(tree: &str) -> Node {
+//         return Node::new( tree, Nil, nil );
+//     }
+// }
+//
+// #[macro_export]
+// macro_rules! node {
+//     ( val: $val:expr, left: $left:expr, right: $right:expr $(,)? ) => {
+//         Node::new($val, $left, $right)
+//     };
+//     ( val: $val:expr, left: $left:expr $(,)? ) => {
+//         node! { val: $val, left: $left, right: node!() }
+//     };
+//     ( val: $val:expr, right: $right:expr $(,)? ) => {
+//         node! { val: $val, left: node!(), right: $right }
+//     };
+//     () => {
+//         None
+//     };
+// }

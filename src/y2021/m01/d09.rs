@@ -8,3 +8,30 @@
 // 例えば、入力 [3, 4, -1, 1] は 2 を与えます。入力 [1, 2, 0] は 3 となります。
 // You can modify the input array in-place.
 // 入力配列をその場で変更することができます。
+
+use proconio::input;
+// https://docs.rs/proconio/0.4.1/proconio/
+
+use itertools::Itertools;
+
+#[allow(dead_code)]
+pub fn main() {
+    println!("at 2021/01/06\n");
+    println!("type n:int  g:[int, n]  k:int");
+    println!("input> ");
+    input! {
+        n: usize,      // ex. 4
+        g: [i32; n], // ex. 3 4 -1 1
+    }
+    println!("{}", f(g)); // ex. 2
+}
+
+fn f(g: Vec<i32>) -> i32 {
+    let mut ret: i32 = 1;
+    for elm in g.into_iter().filter(|&v| v > 0).sorted().collect::<Vec<_>>() {
+        // println!("{}, {}", ret, elm);
+        if ret != elm { break; }
+        ret+=1;
+    }
+    return ret;
+}
