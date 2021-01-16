@@ -7,3 +7,25 @@
 // For example, given the query string de and the set of strings [dog, deer, deal], return [deer, deal].
 // 例えば、クエリ文字列 de と文字列 [dog, deer, deal] の集合が与えられた場合、[deer, deal] を返します。
 // Hint: Try preprocessing the dictionary into a more efficient data structure to speed up queries.// ヒント: クエリを高速化するために、辞書をより効率的なデータ構造に前処理してみてください。
+
+use proconio::input;
+
+#[allow(dead_code)]
+pub fn main() {
+    // ex. type stdin:
+    // de 3 dog deer deal
+    input! {
+        qs: String,
+        n: usize,
+        g: [String; n]
+    }
+    // ex. show stdout:
+    // input: de ["dog", "deer", "deal"]
+    // output: ["deer", "deal"]
+    println!("input: {} {:?}", &qs, g);
+    println!("output: {:?}", f(&qs, g));
+}
+
+fn f(qs: &str, g: Vec<String>) -> Vec<String> {
+    return g.into_iter().filter(|x| x.starts_with(qs)).collect::<Vec<_>>();
+}
